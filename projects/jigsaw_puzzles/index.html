@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Jigsaw-Puzzles, Vision-Language Models, Spatial Reasoning, Dataset, Benchmark">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jigsaw-Puzzles</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Jigsaw-Puzzles: From Seeing to Understanding to Reasoning in Vision-Language Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Zesen Lyu</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="">Dandan Zhang</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="">Wei Ye</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Fangdi Li</a><sup>2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href=""">Zhihang Jiang</a><sup>1,3</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Yao Yang</a><sup>3*</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Hangzhou Institute for Advanced Study, UCAS,</span>
+            <span class="author-block"><sup>2</sup>Zhejiang University</span>
+            <span class="author-block"><sup>3</sup>Zhejiang Lab</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2505.20728"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/zesen01/Jigsaw-Puzzles"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span style="font-weight: bold;">Spatial reasoning</span> is a core component of human cognition, enabling individuals to perceive,
+comprehend, and interact with the physical
+world. It relies on a nuanced understanding
+of spatial structures and inter-object relationships, serving as the foundation for complex
+reasoning and decision-making. To investigate whether current vision-language models
+(VLMs) exhibit similar capability, we introduce
+<span style="font-weight: bold;">Jigsaw-Puzzles</span>, a novel benchmark consisting
+of 1,100 carefully curated real-world images
+with high spatial complexity. Based on this
+dataset, we design five tasks to rigorously evaluate VLMs’ <span style="font-weight: bold;">spatial perception, structural understanding, and reasoning capabilities</span>, while
+deliberately minimizing reliance on domainspecific knowledge to better isolate and assess the general spatial reasoning capability.
+We conduct a comprehensive evaluation across
+<span style="font-weight: bold;">24 state-of-the-art VLMs</span>. The results show
+that even the strongest model, Gemini-2.5-Pro,
+achieves only 77.14% overall accuracy and performs particularly poorly on the Order Generation task, with only 30.00% accuracy, far below the 90%+ performance achieved by human
+participants. This persistent gap underscores
+the need for continued progress, positioning
+Jigsaw-Puzzles as a challenging and diagnostic benchmark for advancing spatial reasoning
+research in VLMs.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Jigsaw-Puzzles Dataset</h2>
+        <div class="content has-text-justified">
+          <p>
+            To investigate whether current vision-language models (VLMs) exhibit <span style="font-weight: bold;">human-like spatial reasoning</span> capability, we introduce <span style="font-weight: bold;">Jigsaw-Puzzles</span>, 
+            a novel benchmark consisting of 1,100 carefully curated real-world images with high spatial complexity. 
+            Based on this dataset, we design five tasks to rigorously 
+            evaluate VLMs’ <span style="font-weight: bold;">spatial perception</span>, <span style="font-weight: bold;">structural understanding</span>, and <span style="font-weight: bold;">reasoning</span> capabilities, 
+            while deliberately minimizing reliance on domainspecific knowledge to better isolate and assess the general spatial reasoning capability.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/task1_5.png"
+            class="interpolation-image"
+            alt="Interpolate start reference image."/>
+        </div>
+        <div class="content has-text-centered">
+          <p>
+            <span style="font-weight: bold;">Task examples of Jigsaw-Puzzles.</span>  Note: the questions above are slightly simplified for clarity and brevity, 
+            and the blue option indicates the correct answer. Complete task-specific question can be found in the paper.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Dataset Curation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Our dataset curation pipeline consists of two main stages: data collection and QA generation.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/data_select.png"
+            class="interpolation-image"
+            alt="Interpolate start reference image."/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Main Evaluation Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We evaluate 24 VLMs on <span style="font-weight: bold;">Jigsaw-Puzzles</span>, covering a diverse range of model scales and training paradigms.
+            Jigsaw-Puzzles effectively distinguishes VLMs across a spectrum of spatial reasoning 
+            capability—from basic understanding to complex multi-step reasoning. 
+            As shown by the results in Table 1, substantial room for improvement remains, 
+            particularly in multi-step spatial reasoning.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/table_1.png"
+            class="interpolation-image"
+            alt="Interpolate start reference image."/>
+        </div>
+        <div class="caption">
+          <strong>Table 2:</strong> Full Evaluation Results of 24 VLMs on Jigsaw-Puzzles. 
+          VLMs are grouped into proprietary and open-source categories.
+          <span style="background-color:#34FF34;">Dark Green</span> and 
+          <span style="background-color:#CBF7CA;">Light Green</span> indicate the top-1 and top-2 
+          performance within each group, respectively.
+          Results of reasoning-enhanced are marked in <strong>bold</strong>.
+          We also highlight the top three models based on their overall performance, using
+          <span style="background-color:#36D1C8;">Dark Blue</span>,
+            <span style="background-color:#36FFF4;">Medium Blue</span>,
+            and <span style="background-color:#B7FFFB;">Light Blue</span>, respectively.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Human vs Model Performance</h2>
+        <div class="content has-text-justified">
+          <p>
+            To evaluate human performance, we construct a subset called <span style="font-weight: bold;">Jigsaw-Puzzles-Lite</span> by sampling 220 images 
+            from the full dataset. Three human participants complete all tasks on this subset under the same 
+            conditions as VLMs—without access to any external tools or the internet. 
+            Their performance serves as an empirical upper bound for spatial reasoning capability.</p>
+          <p>
+            Human participants consistently outperform VLMs, achieving an overall accuracy of 96.36%. 
+            By comparison, current VLMs perform considerably worse, with even the strongest models <span style="font-weight: bold;">Gemini-2.5-Pro</span> 
+            lagging more than 20 percentage points behind human accuracy across all tasks. The persistent gap between humans and 
+            VLMs highlights the demanding 
+            nature of <span style="font-weight: bold;">Jigsaw-Puzzles</span> and affirms its utility as a robust benchmark for spatial reasoning evaluation.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/table_2.png"
+            class="interpolation-image"
+            alt="Interpolate start reference image."/>
+        </div>
+          <div class="caption">
+            <strong>Table 3:</strong> Comparing Top-Performing VLMs with Human Performance on Jigsaw-Puzzles-Lite.
+            The human performance is highlighted in <span style="background-color:#34FF34;">Dark Green</span>.
+            Results of reasoning-enhanced are marked in <strong>bold</strong>.
+            The top three overall performance are highlighted in
+            <span style="background-color:#36D1C8;">Dark Blue</span>,
+            <span style="background-color:#36FFF4;">Medium Blue</span>,
+            and <span style="background-color:#B7FFFB;">Light Blue</span>, respectively.
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Order Generation Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            To further evaluate VLMs’ multistep spatial reasoning beyond the constraints of predefined choices, 
+            we introduce the <span style="font-weight: bold;">Order Generation</span> task based 
+            on Jigsaw-Puzzles-Lite. 
+            In this setting, VLMs must directly generate the correct sequence of puzzle pieces without relying on answer options, 
+            thereby more authentically simulating open-ended spatial reasoning.
+            Current VLMs consistently struggle with this task—Gemini-2.5-Pro, 
+            the best-performing model, achieves only 30.00% accuracy, 
+            in stark contrast to 94.09% by human participants. 
+            This finding reveals that, despite exhibiting strong self-correction behavior under 
+            option constraints, existing VLMs face considerable challenges in autonomously 
+            constructing coherent spatial reasoning chains.
+          </p>
+        </div>
+        <div class="content has-text-centered">
+          <img src="./static/images/generate_lyu.png"
+            class="interpolation-image"
+            alt="Interpolate start reference image."/>
+        </div>
+        <!-- <div class="content has-text-centered">
+          <p>
+            <span style="font-weight: bold;">dsadsa</span> dsadsaa
+          </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{lyu2025jigsaw,
+  title={Jigsaw-Puzzles: From Seeing to Understanding to Reasoning in Vision-Language Models},
+  author={Lyu, Zesen and Zhang, Dandan and Ye, Wei and Li, Fangdi and Jiang, Zhihang and Yang, Yao},
+  journal={arXiv preprint arXiv:2505.20728},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website source code based on the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page. Thanks for their excellent work.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
