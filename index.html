@@ -1,83 +1,292 @@
 <!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Zesen Lyu</title>
+  <title>Zesen Lyu (吕泽森)</title>
   
-  <meta name="author" content="Zesen">
+  <meta name="author" content="Zesen Lyu">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/svg+xml" href="images/watermelon.svg">
+  
+  <style>
+    /* ================= 核心样式优化 ================= */
+    
+    /* 1. 字体 */
+    body {
+      font-family: 'Segoe UI', 'Trebuchet MS', 'Microsoft YaHei', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 链接颜色 */
+    a {
+      color: #0066cc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    a:hover {
+      color: #004488;
+      text-decoration: underline;
+    }
+
+    /* 2. 名字标签样式 */
+    name {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 32px;
+      display: block;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    /* 3. 标题标签样式 */
+    heading {
+      font-family: 'Segoe UI', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: #111;
+      display: block;
+      border-bottom: 1px solid #f0f0f0; 
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    /* 4. 论文卡片样式 */
+    .paper-card {
+      display: flex;
+      gap: 25px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 1px solid #f2f2f2;
+      border-radius: 12px;
+      background: #fafafa;
+      transition: all 0.2s ease-in-out;
+      align-items: flex-start;
+    }
+    
+    /* 鼠标悬停时的效果 */
+    .paper-card:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+      background: #ffffff;
+      border-color: #eee;
+    }
+
+    /* 论文图片 */
+    .paper-img { 
+      width: 25%; 
+      max-width: 160px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      object-fit: cover;
+    }
+    
+    .paper-info { width: 75%; }
+    
+    /* 论文标题 */
+    .paper-title { 
+      font-weight: 600; 
+      font-size: 16px; 
+      color: #222;
+      display: block;
+      margin-bottom: 6px;
+    }
+    
+    /* 作者列表颜色 */
+    .paper-authors {
+      color: #444;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    /* 会议/期刊信息 */
+    .paper-meta { 
+      font-style: italic; 
+      font-size: 14px; 
+      color: #666; 
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    /* TL;DR 摘要 */
+    .tl-dr { 
+      margin-top: 8px; 
+      font-size: 14px; 
+      color: #555; 
+      background-color: #f1f7ff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* ================= 图片滑动容器样式 ================= */
+    
+    /* 新增：滑动组件的外层包裹器，用于定位按钮 */
+    .slider-wrapper {
+        position: relative;
+        width: 90%;
+        max-width: 240px;
+        margin: 0 auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 12px;
+        overflow: hidden; /* 确保圆角对内部内容生效 */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 1px solid #f0f0f0;
+    }
+
+    .photo-slider-container {
+      width: 100%;
+      height: 100%;
+      overflow-x: auto; /* 允许横向滚动 */
+      display: flex;
+      /* 启用滚动捕捉 */
+      scroll-snap-type: x mandatory; 
+      /* 隐藏滚动条 */
+      scrollbar-width: none; 
+      -ms-overflow-style: none; 
+      scroll-behavior: smooth; /* 确保 JS控制也是平滑滚动 */
+    }
+    .photo-slider-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 滑动容器内的图片样式 */
+    .profile-photo-slide {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      flex-shrink: 0; 
+      scroll-snap-align: start; 
+      transition: transform 0.3s;
+    }
+    /* 鼠标悬停放大效果 */
+    .slider-wrapper:hover .profile-photo-slide {
+        transform: scale(1.02);
+    }
+
+    /* ================= 新增：左右按钮样式 ================= */
+    .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.6); /* 半透明白色背景 */
+        color: #333;
+        border: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        z-index: 2; /* 保证在图片上方 */
+        opacity: 0; /* 默认隐藏，鼠标移上去才显示，保持简洁 */
+    }
+    
+    /* 鼠标悬停在整个组件上时显示按钮 */
+    .slider-wrapper:hover .slider-btn {
+        opacity: 1;
+    }
+
+    .slider-btn:hover {
+        background-color: rgba(255, 255, 255, 0.9); /* 鼠标悬停按钮变亮 */
+    }
+    
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+
+
+    .photo-credit {
+      font-size: 0.8em; 
+      color: #888; 
+      text-align: center; 
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    
+    /* 列表微调 */
+    ul { padding-left: 20px; margin-top: 5px; color: #444; }
+    li { margin-bottom: 8px; }
+
+  </style>
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
+  <table style="width:100%;max-width:860px;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
     <tr><td>
 
-      <!-- Header -->
-      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;"><tbody>
+      <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;margin-top:30px;"><tbody>
         <tr>
-          <td style="padding:2.5%;width:63%;vertical-align:middle">
+          <td style="padding:2% 4%;width:65%;vertical-align:top;"> <p style="text-align:left">
+              <name>Zesen Lyu (吕泽森)</name>
+            </p>
 
-            <p style="text-align:center"><name>Zesen Lyu</name></p>
+            <p>
+              I am a third-year M.Eng student at <a href="http://hias.ucas.ac.cn/">HIAS, University of Chinese Academy of Sciences (UCAS)</a>, 
+              advised by <a href="https://scholar.google.com/citations?user=6xDMM1YAAAAJ&hl=en">Prof. Yao Yang</a>.
+            </p>
+            
+            <p>
+              My research interests lie in <strong>Multimodal Large Language Models</strong> and <strong>Reasoning</strong>.
+            </p>
 
-            <p>I am a third-year M.Eng student at <a href="http://hias.ucas.ac.cn/">HIAS, University of Chinese Academy of Sciences</a>, advised by <a href="https://scholar.google.com/citations?user=6xDMM1YAAAAJ&hl=en">Prof. Yao Yang</a>.</p>
-
-            <p style="text-align:center">
-              <a href="mailto:lv_zesen@163.com">Email</a> &nbsp;/&nbsp;
-              <a href="images/cv/CV_Zesen.pdf">CV</a> &nbsp;/&nbsp;
+            <p style="text-align:left; margin-top:25px;">
+                <a href="images/cv/CV_Zesen.pdf">CV</a> &nbsp;/&nbsp;
               <a href="https://scholar.google.com/citations?hl=zh-CN&user=yflg4jgAAAAJ">Google Scholar</a> &nbsp;/&nbsp;
-              <a href="images/Zesen_Wechat.png">Wechat</a>
+              <a href="https://github.com/zesen01">GitHub</a> &nbsp;/&nbsp;
+              <a href="images/Zesen_Wechat.png">Wechat</a> &nbsp;/&nbsp;    
+              <a href="mailto:lv_zesen@163.com">Email</a>
             </p>
           </td>
 
-          <!-- Image -->
-          <td style="padding-top:20px;padding-left:2.5%;padding-right:2.5%;padding-bottom:2.5%;width:37%;max-width:37%">
-            <a href="images/Zesen_Daliy.jpg"><img style="width:100%;border-radius:6px;" alt="profile photo" src="images/Zesen_Daliy.jpg"></a>
+          <td style="padding:20px;width:35%;max-width:35%;text-align:center;vertical-align:top;">
+            
+            <div class="slider-wrapper">
+                <button class="slider-btn prev-btn" onclick="slideButtons('left')">&#10094;</button>
+                
+                <div class="photo-slider-container" id="photoSlider">
+                    <img class="profile-photo-slide" alt="Zesen Gemini Style" src="images/Zesen_Gemini.png">
+                    <img class="profile-photo-slide" alt="Zesen Daily" src="images/Zesen_Daliy.jpg">
+                </div>
+                
+                <button class="slider-btn next-btn" onclick="slideButtons('right')">&#10095;</button>
+            </div>
+            
+            <p class="photo-credit">Thanks to Nano Banana Pro<br>(Swipe to see original)</p>
+            
           </td>
         </tr>
       </tbody></table>
 
-      <!-- Research -->
-      <table style="width:100%;border:0;margin-top:16px;"><tbody>
+      <table style="width:100%;border:0;margin-top:40px;"><tbody>
         <tr><td style="padding:0 20px 6px 20px;"><heading>Research</heading></td></tr>
-        <tr><td style="padding:0 20px 16px 20px;">My research interests lie in <strong>multimodal large language models</strong> and <strong>reasoning</strong>.</td></tr>
-        <tr><td style="padding:0 20px 10px 20px;">* denotes equal contributions.</td></tr>
+        <tr><td style="padding:0 20px 10px 20px; font-size:13px; color:#888;">* denotes equal contributions.</td></tr>
       </tbody></table>
 
-      <!-- Paper Card CSS -->
-      <style>
-        .paper-card {
-          display: flex;
-          gap: 20px;
-          padding: 18px;
-          margin: 12px 0;
-          border: 1px solid #e5e5e5;
-          border-radius: 10px;
-          transition: 0.2s ease-in-out;
-          background: #fafafa;
-        }
-        .paper-card:hover {
-          box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-          transform: translateY(-2px);
-          background: #ffffff;
-        }
-        .paper-img { width: 26%; border-radius: 6px; }
-        .paper-info { width:74%; }
-        .paper-title { font-weight:bold; font-size:16px; }
-        .paper-meta { font-style:italic; font-size:14px; color:#555; }
-        .tl-dr { margin-top:6px; font-size:14px; }
-      </style>
-
-      <!-- Papers -->
       <div class="paper-card">
         <img class="paper-img" src="images/paper/25_EMNLP_Jigsaw.png">
         <div class="paper-info">
           <a href="https://zesen01.github.io/projects/jigsaw_puzzles/" class="paper-title">Jigsaw-Puzzles: From Seeing to Understanding to Reasoning in Vision-Language Models</a>
-          <br>
-          <span><strong>Zesen Lyu</strong>, Dandan Zhang, Wei Ye, Fangdi Li, Zhihang Jiang, Yao Yang</span><br>
-          <span class="paper-meta">EMNLP 2025 (Main)</span>
-          <p class="tl-dr">TL;DR: A benchmark for evaluating spatial reasoning in vision-language models.</p>
+          
+          <div class="paper-authors">
+            <strong>Zesen Lyu</strong>, Dandan Zhang, Wei Ye, Fangdi Li, Zhihang Jiang, Yao Yang
+          </div>
+          
+          <div class="paper-meta">
+            EMNLP 2025 (Main)
+          </div>
+          
+          <div class="tl-dr">TL;DR: A benchmark for evaluating spatial reasoning in vision-language models.</div>
         </div>
       </div>
 
@@ -85,42 +294,63 @@
         <img class="paper-img" src="images/paper/25_Protein_Domain_Rec.gif">
         <div class="paper-info">
           <a href="https://zesen01.github.io/" class="paper-title">Structural fold mining- and deep learning-guided domain recombination to explore the protein fitness landscape across evolution barriers</a>
-          <br>
-          <span>Xinling Guo*, Guiquan Zhang*, Wei Han*, <strong>Zesen Lyu*</strong>, Wentao Chen, Chao Liu, Qiao Han, Shuman Yuan, Pei Wang, Jieping Ye, Dongping Yang, Ning Zhang, Bin Lian, Lina Wu, Xingxu Huang, Yao Yang, Jianghuai Liu</span><br>
-          <span class="paper-meta">Under Review</span>
+          
+          <div class="paper-authors">
+            Xinling Guo*, Guiquan Zhang*, Wei Han*, <strong>Zesen Lyu*</strong>, Wentao Chen, Chao Liu, Qiao Han, Shuman Yuan, Pei Wang, Jieping Ye, Dongping Yang, Ning Zhang, Bin Lian, Lina Wu, Xingxu Huang, Yao Yang, Jianghuai Liu
+          </div>
+          
+          <div class="paper-meta">Under Review</div>
         </div>
       </div>
 
-      <!-- Experience -->
-      <table style="width:100%;border:0;margin-top:16px;"><tbody>
+      <table style="width:100%;border:0;margin-top:30px;"><tbody>
         <tr><td style="padding:0 20px 6px 20px;"><heading>Experience</heading></td></tr>
         <tr><td style="padding:0 20px 16px 20px;">
-          <ul style="margin-top:0;">
-            <li>Research Intern @ <a href="https://www.alibabagroup.com/">Alibaba</a>, working with <a href="https://scholar.google.com/citations?user=nUVmSqUAAAAJ&hl=zh-CN">Zulong Chen</a>, Aug. 2025–Nov. 2025</li>
+          <ul style="margin-top:5px;">
+            <li>
+                <strong>Research Intern @ <a href="https://www.alibabagroup.com/">Alibaba Group</a></strong> <span style="float:right; color:#888; font-size:14px;">Aug. 2025 – Nov. 2025</span><br>
+            </li>
           </ul>
         </td></tr>
       </tbody></table>
 
-      <!-- Award -->
-      <table style="width:100%;border:0;margin-top:16px;"><tbody>
-        <tr><td style="padding:0 20px 6px 20px;"><heading>Award</heading></td></tr>
+      <table style="width:100%;border:0;margin-top:10px;"><tbody>
+        <tr><td style="padding:0 20px 6px 20px;"><heading>Awards</heading></td></tr>
         <tr><td style="padding:0 20px 16px 20px;">
-          <ul style="margin-top:0;">
-            <li>China National Scholarship, 2025</li>
+          <ul style="margin-top:5px;">
+            <li><strong>China National Scholarship</strong>, 2025</li>
           </ul>
         </td></tr>
       </tbody></table>
 
-
-
-      <!-- Footer -->
       <table width="100%" cellspacing="0" cellpadding="20" border="0" align="center"><tbody>
         <tr>
-          <td><p align="right"><font size="2">Last update: 2025.11. <a href="https://jonbarron.info/">Thanks.</a></font></p></td>
+          <td>
+            <p align="right" style="font-size:12px; color:#999;">
+                Last update: Nov. 2025.
+            </p>
+          </td>
         </tr>
       </tbody></table>
 
     </td></tr>
   </tbody></table>
+
+  <script>
+    function slideButtons(direction) {
+        const slider = document.getElementById('photoSlider');
+        // 获取容器的宽度，这就是每次需要滑动的距离
+        const scrollAmount = slider.clientWidth;
+        
+        if (direction === 'left') {
+            // 向左滑动，使用 smooth 平滑滚动效果
+            slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        } else {
+            // 向右滑动
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    }
+  </script>
+
 </body>
 </html>
