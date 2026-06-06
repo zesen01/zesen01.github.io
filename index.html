@@ -48,27 +48,27 @@
 
     /* 3. 标题标签样式 */
     heading {
-      font-family: 'Segoe UI', sans-serif;
-      font-weight: 600;
-      font-size: 20px;
-      color: #111;
-      display: block;
-      border-bottom: 1px solid #f0f0f0; 
-      padding-bottom: 5px;
-      margin-bottom: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #111;
+    display: block;
+    border-bottom: 1px solid #f0f0f0; 
+    padding-bottom: 4px;
+    margin-bottom: 4px;
     }
 
     /* 4. 论文卡片样式 */
     .paper-card {
-      display: flex;
-      gap: 25px;
-      padding: 20px;
-      margin: 20px 0;
-      border: 1px solid #f2f2f2;
-      border-radius: 12px;
-      background: #fafafa;
-      transition: all 0.2s ease-in-out;
-      align-items: flex-start;
+    display: flex;
+    gap: 25px;
+    padding: 20px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #f2f2f2;
+    border-radius: 12px;
+    background: #fafafa;
+    transition: all 0.2s ease-in-out;
+    align-items: flex-start;
     }
     
     /* 鼠标悬停时的效果 */
@@ -228,30 +228,33 @@
       <table style="width:100%;border:0;border-spacing:0;border-collapse:separate;margin:auto;margin-top:30px;"><tbody>
         <tr>
           <td style="padding:2% 4%;width:65%;vertical-align:top;"> <p style="text-align:left">
-              <name>Zesen Lyu (吕泽森)</name>
+              <name>Zesen Lyu</name>
             </p>
 
-            <p>
+            <!-- <p>
               I am a third-year M.Eng student at <a href="http://hias.ucas.ac.cn/">HIAS, University of Chinese Academy of Sciences (UCAS)</a>, 
               advised by <a href="https://scholar.google.com/citations?user=6xDMM1YAAAAJ&hl=en">Prof. Yao Yang</a>.
+            </p> -->
+            <p>
+              I am an independent researcher in artificial intelligence, focusing on looped reasoning and spatial intelligence.
             </p>
             
-            <p>
+            <!-- <p>
               My research interests lie in <strong>Multimodal Large Language Models</strong> and <strong>Reasoning</strong>.
-            </p>
+            </p> -->
 
             <p style="text-align:left; margin-top:25px;">
-                <a href="images/cv/CV_Zesen.pdf">CV</a> &nbsp;/&nbsp;
+                <!-- <a href="images/cv/CV_Zesen.pdf">CV</a> &nbsp;/&nbsp; -->
               <a href="https://scholar.google.com/citations?hl=zh-CN&user=yflg4jgAAAAJ">Google Scholar</a> &nbsp;/&nbsp;
-              <a href="https://github.com/zesen01">GitHub</a> &nbsp;/&nbsp;
-              <a href="images/Zesen_Wechat.png">Wechat</a> &nbsp;/&nbsp;    
-              <a href="mailto:lv_zesen@163.com">Email</a>
+              <!-- <a href="https://github.com/zesen01">GitHub</a> &nbsp;/&nbsp; -->
+              <!-- <a href="images/Zesen_Wechat.png">Wechat</a> &nbsp;/&nbsp;     -->
+              <a href="mailto:lvzesen23@mails.ucas.ac.cn">Email</a>
             </p>
           </td>
 
           <td style="padding:20px;width:35%;max-width:35%;text-align:center;vertical-align:top;">
             
-            <div class="slider-wrapper">
+            <!-- <div class="slider-wrapper">
                 <button class="slider-btn prev-btn" onclick="slideButtons('left')">&#10094;</button>
                 
                 <div class="photo-slider-container" id="photoSlider">
@@ -260,31 +263,23 @@
                 </div>
                 
                 <button class="slider-btn next-btn" onclick="slideButtons('right')">&#10095;</button>
+            </div> -->
+
+            <div class="profile-photo-wrapper">
+                <img class="profile-photo" alt="Profile Photo" src="images/Zesen_Gemini.png">
             </div>
             
-            <p class="photo-credit">Thanks to Nano Banana Pro<br>(Swipe to see original)</p>
+            <!-- <p class="photo-credit">Thanks to Nano Banana Pro<br>(Swipe to see original)</p> -->
             
           </td>
         </tr>
       </tbody></table>
 
-      <table style="width:100%;border:0;margin-top:40px;"><tbody>
-        <tr><td style="padding:0 20px 6px 20px;"><heading>Research</heading></td></tr>
-        <tr><td style="padding:0 20px 10px 20px; font-size:13px; color:#888;">* denotes equal contributions.</td></tr>
-      </tbody></table>
+      <table style="width:100%;border:0;margin-top:10px;">
+        <tr><td style="padding:0 20px 0px 20px;"><heading>Research</heading></td></tr>
+        <!-- <tr><td style="padding:0 20px 10px 20px; font-size:13px; color:#888;">* denotes equal contributions.</td></tr> -->
+      </table>
 
-      <div class="paper-card">
-        <img class="paper-img" src="images/paper/25_Protein_Domain_Rec.gif">
-        <div class="paper-info">
-          <a href="https://github.com/Xinling-Guo/SMAL-DR" class="paper-title">Structural fold mining- and deep learning-guided domain recombination to explore the protein fitness landscape across evolution barriers</a>
-          
-          <div class="paper-authors">
-            Xinling Guo*, Guiquan Zhang*, Wei Han*, <strong>Zesen Lyu*</strong>, Wentao Chen, Chao Liu, Qiao Han, Shuman Yuan, Pei Wang, Jieping Ye, Dongping Yang, Ning Zhang, Bin Lian, Lina Wu, Xingxu Huang, Yao Yang, Jianghuai Liu
-          </div>
-          
-          <div class="paper-meta">Under Review</div>
-        </div>
-      </div>
 
       <div class="paper-card">
         <img class="paper-img" src="images/paper/25_EMNLP_Jigsaw.png">
@@ -303,7 +298,20 @@
         </div>
       </div>
 
-      <table style="width:100%;border:0;margin-top:30px;"><tbody>
+            <!-- <div class="paper-card">
+        <img class="paper-img" src="images/paper/25_Protein_Domain_Rec.gif">
+        <div class="paper-info">
+          <a href="https://github.com/Xinling-Guo/SMAL-DR" class="paper-title">Structural fold mining- and deep learning-guided domain recombination to explore the protein fitness landscape across evolution barriers</a>
+          
+          <div class="paper-authors">
+            Xinling Guo*, Guiquan Zhang*, Wei Han*, <strong>Zesen Lyu*</strong>, Wentao Chen, Chao Liu, Qiao Han, Shuman Yuan, Pei Wang, Jieping Ye, Dongping Yang, Ning Zhang, Bin Lian, Lina Wu, Xingxu Huang, Yao Yang, Jianghuai Liu
+          </div>
+          
+          <div class="paper-meta">Under Review</div>
+        </div>
+      </div> -->
+
+      <!-- <table style="width:100%;border:0;margin-top:30px;"><tbody>
         <tr><td style="padding:0 20px 6px 20px;"><heading>Experience</heading></td></tr>
         <tr><td style="padding:0 20px 16px 20px;">
           <ul style="margin-top:5px;">
@@ -312,7 +320,7 @@
             </li>
           </ul>
         </td></tr>
-      </tbody></table>
+      </tbody></table> -->
 
       <table style="width:100%;border:0;margin-top:10px;"><tbody>
         <tr><td style="padding:0 20px 6px 20px;"><heading>Awards</heading></td></tr>
@@ -327,7 +335,7 @@
         <tr>
           <td>
             <p align="right" style="font-size:12px; color:#999;">
-                Thanks to <a href="https://jonbarron.info/" target="_blank" rel="noopener noreferrer">Jon Barron</a>. Last update: Nov. 2025. 
+                Thanks to <a href="https://jonbarron.info/" target="_blank" rel="noopener noreferrer">Jon Barron</a>. Last update: Jun. 2026. 
             </p>
           </td>
         </tr>
